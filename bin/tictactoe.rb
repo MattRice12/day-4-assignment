@@ -73,7 +73,7 @@
 # Symbols - I have a class of symbols. 3 symbols each with a different value (' ', x, o). These symbols go in a squares 1-9.
   # Data: 3 symbols (' ', x, o)
   # Behavior: Is placed within 1 of 9 squares
-class Symbols
+class Values
   attr_reader :value
   def initialize(value)
     @value = value
@@ -88,73 +88,129 @@ end
 # Squares -- I have a class of squares. 9 types of squares, each with a different value(1-9). Squares go into Board.new
   # Data: 9 squares
   # Behavior: holds symbols
-class Squares
-  def initialize
+class Symbols
+  attr_reader :symbol
+  def initialize(symbol)
+    @symbol = symbol
+  end
+
+  def Squares
     @symbol = []
-    [' ', "X", "Y"].each do |value|
-      @symbol << Symbols.new(value)
+    [].each do |value|
+      @symbol << Values.new(value)
     end
-  end
-  require 'pry'; binding.pry
-
-end
-
-# Board
-  # - Data: Grid of 9 squares
-  # - Behavior: holds squares
-class Board
-  def initialize
-    @square = Squares.new
-
-    # @square = []
-    # [].each do |symbol|
-    #   @square << Squares.new
-  end
-
-  def square
-    @square
   end
 
   def to_s
     """
   1    |2    |3
-    #{@symbol}  |  #{@symbol}  |  #{@symbol}
+  #{@one}  |  #{@two}  |  #{@three}
   _____|_____|_____
   4    |5    |6
-    #{@symbol}  |  #{@symbol}  |  #{@symbol}
+  #{@four}  |  #{@five}  |  #{@six}
   _____|_____|_____
   7    |8    |9
-    #{@symbol}  |  #{@symbol}  |  #{@symbol}
+  #{@seven}  |  #{@eight}  |  #{@nine}
        |     |
    """
+  end
+end
+
+
+
+# Board
+  # - Data: Grid of 9 squares
+  # - Behavior: holds squares
+class Squares
+  # attr_accessor :one, :two, :three, :four, :five, :six, :seven, :eight, :nine
+  def initialize
+    # @square = []
+    #   [' ', 'X', 'Y'].each do |symbol|
+    #     @square << Symbols.new(symbol)
+    #   end
+    @one = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @two = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @three = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @four = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @five = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @six = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @seven = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @eight = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+    @nine = []
+      [].each do |symbol|
+        @square << Symbols.new(symbol)
+      end
+
   end
 
 end
 
-Board.new
+
+
+
+class Board
+
+
+
+  def initialize
+  end
 
 
 
 
+end
 
 
 # Players
   # Data: Player, Computer
   # Behavior: Place symbols in squares on the board
 class Players
+  attr_reader :name
+  def initialize(name)
+    @name = name
+  end
+
+#Start
+  # - each blank starts with " "
+# def board
+#   @square.each do
+
+#Player
+  # - Player auto-selects X
+
+#Computer
+  # - Computer auto-selects O
 end
-
-
-
 
 # Turns
   # Data: Player turn, Computer turn
   # Behavior: alternate
 class Turns
 end
-
-
-
 
 # Score
   # Data: sub-Board
@@ -164,6 +220,46 @@ end
 
 # Game
 class Game
+  def greeting
+    puts "Get ready to play some Tic-Tac-Toe!!!"
+  end
+
+  def prompt(msg)
+    print msg
+    gets.chomp
+  end
+
+
+  def start
+    greeting
+
+    name = prompt("What is your name? ")
+    @player = Players.new(name)    ####################### <<==
+    @computer = Players.new("Hal_9000")
+    puts "Hi #{@player}! You will be playing #{@computer}."
+    puts
+
+
+    @board = Board.new
+
+    @move = Squares.new
+  end
+
+
+  def move
+    @move = gets.chomp
+    case @move
+    when "1"
+      @one << ("X")
+    when "2"
+      @two.push("X")
+    end
+  end
+  require 'pry'; binding.pry
+
+  # def player_move
+  #   @player.symbol = @board.move
+  # end
 end
 
 # require 'pry'; binding.pry
