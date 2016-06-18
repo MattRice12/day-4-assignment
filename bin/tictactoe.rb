@@ -228,51 +228,50 @@ class Game
     greeting
     display_board
     loop do
-      move
-      display_board
+      move_player
+
       system("Clear")
       puts "Welcome to Tic-Tac-Toe!"
       puts
       puts "Hi #{@player.name}! You will be playing #{@computer.name}."
       puts
-      puts @board
+      puts @board ####<=========== THIS IS WHAT RESETS THE SET!!!
+      sleep(1)
+      move_computer
+      puts @board.one
+
     end
+  end
+
+  def updated_board
+
   end
 
   def display_board
     puts @board
   end
 
-  def move
+  def move_player
     loop do
-    move = prompt("Please make a move > ")
-      case move
-      when "1"
-        @board.one = "X"
+    move_player = prompt("Please make a move > ")
+      case move_player
+      when "1" then @board.one = "X"
         break
-      when "2"
-        @board.two = "X"
+      when "2" then @board.two = "X"
         break
-      when "3"
-        @board.three = "X"
+      when "3" then @board.three = "X"
         break
-      when "4"
-        @board.four = "X"
+      when "4" then @board.four = "X"
         break
-      when "5"
-        @board.five = "X"
+      when "5" then @board.five = "X"
         break
-      when "6"
-        @board.six = "X"
+      when "6" then @board.six = "X"
         break
-      when "7"
-        @board.seven = "X"
+      when "7" then @board.seven = "X"
         break
-      when "8"
-        @board.eight = "X"
+      when "8" then @board.eight = "X"
         break
-      when "9"
-        @board.nine = "X"
+      when "9" then @board.nine = "X"
         break
       else
         system("Clear")
@@ -280,14 +279,71 @@ class Game
         puts
         puts "Hi #{@player.name}! You will be playing #{@computer.name}."
         puts
-        puts @board
+        puts @board #<============ THIS TOOOOOO!!! RESETS THE SET!
         puts "I'm sorry, I didn't catch that. "
         puts "________________________________"
         puts
       end
     end
-
+      # Create a set of spaces that don't have "X". Computer can place O in a random one of these spaces.
   end
+
+#######______________________________________
+  # def computer_set
+  #   computer_set = []
+  #   if Board.new.one == "1"
+  #     Board.new.one = ""
+  #     computer_set << Board.new.one
+  #   end
+  #   if Board.new.two == "2"
+  #     Board.new.two = ""
+  #     computer_set << Board.new.two
+  #   end
+  #   if Board.new.three == "3"
+  #     Board.new.three = ""
+  #     computer_set << Board.new.three
+  #   end
+  #   if Board.new.four == "4"
+  #     Board.new.four
+  #     computer_set << Board.new.four
+  #   end
+  #   if Board.new.five == "5"
+  #     Board.new.five
+  #     computer_set << Board.new.five
+  #   end
+  #   if Board.new.six == "6"
+  #     Board.new.six
+  #     computer_set << Board.new.six
+  #   end
+  #   if Board.new.seven == "7"
+  #     Board.new.seven
+  #     computer_set << Board.new.seven
+  #   end
+  #   if Board.new.eight == "8"
+  #     Board.new.eight
+  #     computer_set << Board.new.eight
+  #   end
+  #   if Board.new.nine == "9"
+  #     Board.new.nine
+  #     computer_set << Board.new.nine
+  #   end
+  # end
+  #
+  # def move_computer
+  #   move_computer = Game.new.computer_set.shuffle!
+  #   case move_computer.pop
+  #   when "1" then @board.one = "O"
+  #   when "2" then @board.two = "O"
+  #   when "3" then @board.three = "O"
+  #   when "4" then @board.four = "O"
+  #   when "5" then @board.five = "O"
+  #   when "6" then @board.six = "O"
+  #   when "7" then @board.seven = "O"
+  #   when "8" then @board.eight = "O"
+  #   when "9" then @board.nine = "O"
+  #   end
+  # end
+#####______________________________________
   # require 'pry'; binding.pry
 
 end
