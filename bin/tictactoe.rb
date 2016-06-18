@@ -64,7 +64,7 @@
 
 
 
-# symbol >> squares >> board
+# values >> symbol >> squares >> board
   # Translation: Class of Symbols(' ', x, o), goes into class of  Squares (1-9), goes into class of Board (grid).
 
 
@@ -170,8 +170,6 @@ class Squares
 end
 
 
-
-
 class Board
 
 
@@ -193,6 +191,22 @@ class Players
   def initialize(name)
     @name = name
   end
+
+  def prompt(msg)
+    print msg
+    gets.chomp
+  end
+
+  # def name_prompt
+  #   prompt("What is your name? > ")
+  # end
+
+  # def hal_9000
+  #   "Hal_9000"
+  # end
+
+
+
 
 #Start
   # - each blank starts with " "
@@ -220,8 +234,13 @@ end
 
 # Game
 class Game
+  def welcome
+    puts "Welcome to Tic-Tac-Toe!"
+  end
+
   def greeting
-    puts "Get ready to play some Tic-Tac-Toe!!!"
+    puts "Hi #{@player.name}! You will be playing #{@computer.name}."
+    puts
   end
 
   def prompt(msg)
@@ -229,37 +248,48 @@ class Game
     gets.chomp
   end
 
-
   def start
+    welcome
+    name = gets.chomp
+
+    # name = Players.new(name).name_prompt
+    @player   = Players.new(name)
+    @computer = Players.new("Hal_9000")
     greeting
 
-    name = prompt("What is your name? ")
-    @player = Players.new(name)    ####################### <<==
-    @computer = Players.new("Hal_9000")
-    puts "Hi #{@player}! You will be playing #{@computer}."
-    puts
-
-
-    @board = Board.new
-
-    @move = Squares.new
+    @board = Board.new ### <-- not assigned to anything yet
+    move_prompt
   end
 
+  # def name
+  #   @name = prompt("What is your name? > ")
+  # end
+
+  def move_prompt
+    @move_prompt = prompt("Please make a move > ")
+  end
 
   def move
-    @move = gets.chomp
+    @move = move_prompt
     case @move
     when "1"
-      @one << ("X")
+      puts @one << "X"
     when "2"
-      @two.push("X")
+      puts @two << "X"
     end
   end
-  require 'pry'; binding.pry
+
+
+
+
+
+
 
   # def player_move
   #   @player.symbol = @board.move
   # end
 end
+
+Game.new.start
 
 # require 'pry'; binding.pry
