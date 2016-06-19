@@ -20,15 +20,21 @@ class Board
 
   def to_s
     """
-         |       |
-     #{@one}   |   #{@two}   |   #{@three}
-  _______|_______|_______
-         |       |
-     #{@four}   |   #{@five}   |   #{@six}
-  _______|_______|_______
-         |       |
-     #{@seven}   |   #{@eight}   |   #{@nine}
-         |       |
+           |         |
+           |         |
+      #{@one}    |    #{@two}    |    #{@three}
+           |         |
+  _________|_________|__________
+           |         |
+           |         |
+      #{@four}    |    #{@five}    |    #{@six}
+           |         |
+  _________|_________|__________
+           |         |
+           |         |
+      #{@seven}    |    #{@eight}    |    #{@nine}
+           |         |
+           |         |
    """
   end
 end
@@ -78,30 +84,30 @@ class Game
   end
 
   def victory_player
-    puts "You Win!"
+    puts "CONGRATS! YOU WON!!!!!!!"
     play_again
   end
 
   def victory_computer
-    puts "Hal_9000 Wins!"
+    puts "Hal_9000 Wins! Too bad, try again!"
     play_again
   end
 
   def tie_conditions
-    (@board.one == ("x" || "o")) &&
-    (@board.two == ("x" || "o")) &&
-    (@board.three == ("x" || "o")) &&
-    (@board.four == ("x" || "o")) &&
-    (@board.five == ("x" || "o")) &&
-    (@board.six == ("x" || "o")) &&
-    (@board.seven == ("x" || "o")) &&
-    (@board.eight == ("x" || "o")) &&
-    (@board.nine == ("x" || "o"))
+    (@board.one == ("X" || "O")) &&
+    (@board.two == ("X" || "O")) &&
+    (@board.three == ("X" || "O")) &&
+    (@board.four == ("X" || "O")) &&
+    (@board.five == ("X" || "O")) &&
+    (@board.six == ("X" || "O")) &&
+    (@board.seven == ("X" || "O")) &&
+    (@board.eight == ("X" || "O")) &&
+    (@board.nine == ("X" || "O"))
   end
 
   def tie_message
       refresh_screen
-      puts "You tied!"
+      print "YOU TIED!"
       puts
       play_again
   end
@@ -109,7 +115,7 @@ class Game
   def play_again
     loop do
       puts
-      response = prompt("Play again? > ")
+      response = prompt("Would you like to try play again? > ")
       if response == "y"
         Game.new.start
         break
@@ -124,25 +130,25 @@ class Game
   end
 
   def get_three_player
-    (@board.one == "x") && (@board.two == "x") && (@board.three == "x") ||
-    (@board.one == "x") && (@board.five == "x") && (@board.nine == "x") ||
-    (@board.one == "x") && (@board.four == "x") && (@board.seven == "x") ||
-    (@board.two == "x") && (@board.five == "x") && (@board.eight == "x") ||
-    (@board.three == "x") && (@board.five == "x") && (@board.seven == "x") ||
-    (@board.three == "x") && (@board.six == "x") && (@board.nine == "x") ||
-    (@board.four == "x") && (@board.five == "x") && (@board.six == "x") ||
-    (@board.seven == "x") && (@board.eight == "x") && (@board.nine == "x")
+    (@board.one == "X") && (@board.two == "X") && (@board.three == "X") ||
+    (@board.one == "X") && (@board.five == "X") && (@board.nine == "X") ||
+    (@board.one == "X") && (@board.four == "X") && (@board.seven == "X") ||
+    (@board.two == "X") && (@board.five == "X") && (@board.eight == "X") ||
+    (@board.three == "X") && (@board.five == "X") && (@board.seven == "X") ||
+    (@board.three == "X") && (@board.six == "X") && (@board.nine == "X") ||
+    (@board.four == "X") && (@board.five == "X") && (@board.six == "X") ||
+    (@board.seven == "X") && (@board.eight == "X") && (@board.nine == "X")
   end
 
   def get_three_computer
-    (@board.one == "o") && (@board.two == "o") && (@board.three == "o") ||
-    (@board.one == "o") && (@board.five == "o") && (@board.nine == "o") ||
-    (@board.one == "o") && (@board.four == "o") && (@board.seven == "o") ||
-    (@board.two == "o") && (@board.five == "o") && (@board.eight == "o") ||
-    (@board.three == "o") && (@board.five == "o") && (@board.seven == "o") ||
-    (@board.three == "o") && (@board.six == "o") && (@board.nine == "o") ||
-    (@board.four == "o") && (@board.five == "o") && (@board.six == "o") ||
-    (@board.seven == "o") && (@board.eight == "o") && (@board.nine == "o")
+    (@board.one == "O") && (@board.two == "O") && (@board.three == "O") ||
+    (@board.one == "O") && (@board.five == "O") && (@board.nine == "O") ||
+    (@board.one == "O") && (@board.four == "O") && (@board.seven == "O") ||
+    (@board.two == "O") && (@board.five == "O") && (@board.eight == "O") ||
+    (@board.three == "O") && (@board.five == "O") && (@board.seven == "O") ||
+    (@board.three == "O") && (@board.six == "O") && (@board.nine == "O") ||
+    (@board.four == "O") && (@board.five == "O") && (@board.six == "O") ||
+    (@board.seven == "O") && (@board.eight == "O") && (@board.nine == "O")
   end
 
   def refresh_screen
@@ -186,6 +192,7 @@ class Game
 
       move_player
 
+
       if get_three_player
         refresh_screen
         victory_player
@@ -197,6 +204,7 @@ class Game
         break
       end
 
+      refresh_screen
 
       sleep(1)
 
@@ -225,23 +233,23 @@ class Game
       move_player = prompt("Please make a move > ")
       if
         if move_player == "1" && @board.one == "1"
-          @board.one = "x"
+          @board.one = "X"
         elsif move_player == "2" && @board.two == "2"
-          @board.two = "x"
+          @board.two = "X"
         elsif move_player == "3" && @board.three == "3"
-          @board.three = "x"
+          @board.three = "X"
         elsif move_player == "4" && @board.four == "4"
-          @board.four = "x"
+          @board.four = "X"
         elsif move_player == "5" && @board.five == "5"
-          @board.five = "x"
+          @board.five = "X"
         elsif move_player == "6" && @board.six == "6"
-          @board.six = "x"
+          @board.six = "X"
         elsif move_player == "7" && @board.seven == "7"
-          @board.seven = "x"
+          @board.seven = "X"
         elsif move_player == "8" && @board.eight == "8"
-          @board.eight = "x"
+          @board.eight = "X"
         elsif move_player == "9" && @board.nine == "9"
-          @board.nine = "x"
+          @board.nine = "X"
         end
         break
       else
@@ -289,47 +297,47 @@ class Game
     computer_set = make_computer_set
     case computer_set.pop
     when "1"
-      @board.one = "o"
+      @board.one = "O"
       refresh_screen
       puts "Hal_9000 takes square 1"
       puts
     when "2"
-      @board.two = "o"
+      @board.two = "O"
       refresh_screen
       puts "Hal_9000 takes square 2"
       puts
     when "3"
-      @board.three = "o"
+      @board.three = "O"
       refresh_screen
       puts "Hal_9000 takes square 3"
       puts
     when "4"
-      @board.four = "o"
+      @board.four = "O"
       refresh_screen
       puts "Hal_9000 takes square 4"
       puts
     when "5"
-      @board.five = "o"
+      @board.five = "O"
       refresh_screen
       puts "Hal_9000 takes square 5"
       puts
     when "6"
-      @board.six = "o"
+      @board.six = "O"
       refresh_screen
       puts "Hal_9000 takes square 6"
       puts
     when "7"
-      @board.seven = "o"
+      @board.seven = "O"
       refresh_screen
       puts "Hal_9000 takes square 7"
       puts
     when "8"
-      @board.eight = "o"
+      @board.eight = "O"
       refresh_screen
       puts "Hal_9000 takes square 8"
       puts
     when "9"
-      @board.nine = "o"
+      @board.nine = "O"
       refresh_screen
       puts "Hal_9000 takes square 9"
       puts
