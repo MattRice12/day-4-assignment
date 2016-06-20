@@ -115,7 +115,7 @@ class Game
   def play_again
     loop do
       puts
-      response = prompt("Would you like to try play again? > ")
+      response = prompt("Would you like to try play again? (y)/(n) > ")
       if response == "y"
         Game.new.start
         break
@@ -206,7 +206,7 @@ class Game
 
       refresh_screen
 
-      sleep(1)
+      sleep(0.6)
 
       move_computer
 
